@@ -1,20 +1,41 @@
 import streamlit as st
 import pandas as pd
+import pandas_profiling
+from streamlit_pandas_profiling import st_profile_report
+import os
 
-# expects a file input containing a data set
-def data_upload():
-    st.title("Upload Data For Modelling")
-    file = st.file_uploader("Upload Data Set:")
-    if file:
-        df = pd.read_csv(file)
-        st.dataframe(df)
+class MenuModules:
+    def __init__(self):
+        self._df = self.check_datadir()
 
 
-def profiling():
-    pass
+    def check_datadir(self):
+        if os.path.exists("data/sourcedata.csv"):
+            return pd.read_csv("data/sourcedata.csv", index_col=None)
+        else:
+            return None
 
-def machine_learning():
-    pass
+    # expects a file input containing a data set
+    def data_upload(self):
+        st.title("Upload Data For Modelling")
 
-def download_model():
-    pass
+        if self._df is not None:
+            st.dataframe(self._df)
+        else:
+            file = st.file_uploader("Upload Data Set:")
+            # read file and write the csv into the "data" directory
+            if file:
+                self._df = pd.read_csv(file, index_col=None)
+                self._df.to_csv("data/sourcedata.csv", index=None)
+                st.dataframe(self._df)
+
+    def profiling(self):
+        st.title("Data Profiling")
+        profile_report = self._df.profile_report()
+        st_profile_report(profile_report)
+
+    def machine_learning(self):
+        st.title("ML training")
+
+    def download_model(self):
+        st.title("Download Model")

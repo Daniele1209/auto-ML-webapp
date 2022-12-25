@@ -1,12 +1,14 @@
 import streamlit as st
-from modules import data_upload, profiling, machine_learning, download_model
+from modules import MenuModules
+
+menu_modules = MenuModules()
 
 # navbar options liked to functionality
 navbar_options = {
-                "Data Upload":data_upload(), 
-                "Profiling":profiling(), 
-                "ML":machine_learning(), 
-                "Download":download_model()}
+                "Data Upload":menu_modules.data_upload, 
+                "Profiling":menu_modules.profiling, 
+                "ML":menu_modules.machine_learning, 
+                "Download":menu_modules.download_model}
 
 # navbar design
 with st.sidebar:
@@ -17,4 +19,4 @@ with st.sidebar:
 
 # if there is a valid choice, execute the assigned function
 if option in navbar_options.keys():
-    navbar_options[option]
+    navbar_options[option]()
