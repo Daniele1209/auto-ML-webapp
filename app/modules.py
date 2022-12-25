@@ -49,9 +49,9 @@ class MenuModules:
             st.info("Best ML Model:")
             st.dataframe(compare_df)
             best_model
-            save_model(best_model, "models/best_model")
+            save_model(best_model, "../models/best_model")
 
     def download_model(self):
         st.title("Download Model")
-        with open("models/best_model.pkl", 'rb') as model_file:
+        with open("../models/best_model.pkl", 'rb') as model_file:
             st.download_button("Download Model", model_file, "output_model.pkl")
