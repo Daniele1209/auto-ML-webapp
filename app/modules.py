@@ -38,16 +38,20 @@ class MenuModules:
     def machine_learning(self):
         st.title("ML training")
         target = st.selectbox("Select a target column", self._df.columns)
-        setup(self._df, target=target, silent=True)
-        # pull the parameters for our ML model 
-        setup_df = pull()
-        st.info("ML experiment settings")
-        st.dataframe(setup_df)
-        best_model = compare_models()
-        compare_df = pull()
-        st.info("Best ML Model:")
-        st.dataframe(compare_df)
-        best_model
+        if st.button("Train ML model"):
+            setup(self._df, target=target, silent=True)
+            # pull the parameters for our ML model 
+            setup_df = pull()
+            st.info("ML experiment settings")
+            st.dataframe(setup_df)
+            best_model = compare_models()
+            compare_df = pull()
+            st.info("Best ML Model:")
+            st.dataframe(compare_df)
+            best_model
+            save_model(best_model, "models/best_model")
 
     def download_model(self):
         st.title("Download Model")
+        with open("models/best_model.pkl", 'rb') as model_file:
+            st.download_button("Download Model", model_file, "output_model.pkl")
