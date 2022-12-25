@@ -29,4 +29,4 @@ streamlit run app.py
 ```
 
 ## License
-[MIT](https://choosealicense.com/licenses/mit/)
+[GNU](https://choosealicense.com/licenses/agpl-3.0/)
