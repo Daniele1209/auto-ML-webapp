@@ -1,5 +1,5 @@
 # auto-ML-webapp
-![Logo]("images/logo_automl.png")
+<img src="/images/logo_automl.png" width="250" height="250"/>
 
 This platform is built using Python, Streamlit, scikit-learn, pandas, and Poetry. It is designed to allow users to easily build and train machine learning models without the need for extensive programming knowledge.
 
