@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "auto-ml-webapp"
+version = "0.1.0"
+description = ""
+authors = ["Moș Daniele <dany.mosh@yahoo.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "auto_ml_webapp"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+protobuf = "^4.21.12"
+streamlit = "^1.16.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
